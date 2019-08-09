@@ -8,10 +8,11 @@ export async function installPackages({ cwd, packageSummary }: { cwd?: string; p
   const spinner = ora(`install types...`)
 
   spinner.start()
+  const output = await execa.command(`${dir} npm install --save-dev ${packages}`, {
+    env: { ...process.env },
+    shell: true
+  })
+  spinner.stop()
 
-  return execa
-    .command(`${dir} npm install --save-dev ${packages}`, { env: { ...process.env }, shell: true })
-    .finally(() => {
-      spinner.stop()
-    })
+  return output
 }
