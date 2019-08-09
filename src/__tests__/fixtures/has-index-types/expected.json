@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "dependencies": {
+    "read-pkg": "^5.2.0"
+  }
+}

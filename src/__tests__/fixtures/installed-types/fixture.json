@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "dependencies": {
+    "inquirer": "^6.5.0"
+  },
+  "devDependencies": {
+    "@types/inquirer": "6.5.0"
+  }
+}
