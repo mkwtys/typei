@@ -22,12 +22,12 @@ export async function createPackageSummary(options: { cwd?: string; pkg: readPkg
   const getPackageFromNodeModules = async (pkgName: string) => {
     const pkgPath = getPackagePath(pkgName)
     if (pkgPath) {
-      return readPkg({ cwd: pkgPath })
+      return readPkg({ cwd: pkgPath }).catch(e => {})
     }
   }
 
   const getPackageFromRegistry = async (pkgName: string) => {
-    return packageJson(pkgName)
+    return packageJson(pkgName).catch(e => {})
   }
 
   const normalizePkgName = (pkgName: string) => {

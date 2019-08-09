@@ -38,5 +38,6 @@ describe('actions', () => {
   test('has-typings')
   test('installed-types')
   test('no-deps')
+  test('not-registered-in-types-registry')
   test('scoped-package')
 })

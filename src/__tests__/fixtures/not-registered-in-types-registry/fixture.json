@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "devDependencies": {
+    "@babel/preset-typescript": "7.3.3"
+  }
+}
