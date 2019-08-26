@@ -26,7 +26,8 @@ export async function interactiveUpdate(options: { cwd?: string; update?: boolea
         name: 'types',
         message: 'choose which types to update',
         type: 'checkbox',
-        choices
+        choices,
+        pageSize: process.stdout.rows - 2
       }
     ])
     selectedPackageSummary = answers.types
