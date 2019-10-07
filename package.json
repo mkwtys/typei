@@ -51,6 +51,7 @@
     "ora": "^4.0.0",
     "package-json": "^6.5.0",
     "path-exists": "^4.0.0",
+    "preferred-pm": "2.0.0",
     "read-pkg": "^5.2.0",
     "semver": "^6.3.0",
     "strip-ansi": "^5.2.0",
