@@ -13,7 +13,7 @@ export async function installPackages({ cwd, packageSummary }: { cwd?: string; p
   const dir = cwd ? `cd ${cwd} &&` : ''
   const packageManager = await getPreferredPackageManager({ cwd: process.cwd() })
   const packages = packageSummary.map(summary => `${summary.typesName}@${summary.latest}`).join(' ')
-  const command = `${dir} ${packageManager} ${packageManager === 'yarn' ? 'add' : 'install'} --save-dev ${packages}`
+  const command = `${dir} ${packageManager} ${packageManager === 'yarn' ? 'add -W' : 'install'} -D ${packages}`
   const spinner = ora(`install types...`)
 
   spinner.start()
