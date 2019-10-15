@@ -18,6 +18,7 @@ export async function installPackages({ cwd, packageSummary }: { cwd?: string; p
 
   spinner.start()
   const output = await execa.command(command, {
+    all: true,
     env: { ...process.env },
     shell: true
   })
