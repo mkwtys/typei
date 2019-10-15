@@ -9,6 +9,7 @@ export async function installPackages({ cwd, packageSummary }: { cwd?: string; p
 
   spinner.start()
   const output = await execa.command(`${dir} npm install --save-dev ${packages}`, {
+    all: true,
     env: { ...process.env },
     shell: true
   })
