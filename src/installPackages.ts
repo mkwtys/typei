@@ -17,11 +17,16 @@ export async function installPackages({ cwd, packageSummary }: { cwd?: string; p
   const spinner = ora(`install types...`)
 
   spinner.start()
-  const output = await execa.command(command, {
-    all: true,
-    env: { ...process.env },
-    shell: true
-  })
+  const output = await execa
+    .command(command, {
+      all: true,
+      env: { ...process.env },
+      shell: true
+    })
+    .catch(e => {
+      spinner.stop()
+      throw e
+    })
   spinner.stop()
 
   return output
