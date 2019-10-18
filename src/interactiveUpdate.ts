@@ -1,4 +1,5 @@
 import chalk from 'chalk'
+import execa from 'execa'
 import inquirer from 'inquirer'
 import readPkg from 'read-pkg'
 import { createChoices } from './createChoices'
@@ -37,8 +38,12 @@ export async function interactiveUpdate(options: { cwd?: string; update?: boolea
     return
   }
 
-  await installPackages({ cwd, packageSummary: selectedPackageSummary }).then(output => {
-    console.log(output.all)
-    console.log(`${chalk.green(`❯`)} complete`)
-  })
+  await installPackages({ cwd, packageSummary: selectedPackageSummary })
+    .then(output => {
+      console.log(output.all)
+      console.log(`${chalk.green(`❯`)} complete`)
+    })
+    .catch((e: execa.ExecaError) => {
+      console.error(e.stderr)
+    })
 }
