@@ -62,7 +62,7 @@
     "@types/inquirer": "6.5.0",
     "@types/jest": "24.0.19",
     "@types/mkdirp": "0.5.2",
-    "@types/node": "12.11.1",
+    "@types/node": "12.11.2",
     "@types/rimraf": "2.0.2",
     "@types/semver": "6.0.2",
     "@types/text-table": "0.2.1",
