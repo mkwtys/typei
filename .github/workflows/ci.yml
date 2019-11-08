@@ -20,10 +20,6 @@ jobs:
       - name: install
         run: |
           npm install
-      - name: test & generate coverage report
+      - name: test
         run: |
-          npm run coverage
-      - name: coverage to codecov
-        uses: codecov/codecov-action@v1.0.2
-        with:
-          token: ${{secrets.CODECOV_TOKEN}}
+          npm t
