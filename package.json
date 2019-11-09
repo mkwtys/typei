@@ -54,7 +54,7 @@
     "preferred-pm": "^2.0.0",
     "read-pkg": "^5.2.0",
     "semver": "^6.3.0",
-    "strip-ansi": "^5.2.0",
+    "strip-ansi": "^6.0.0",
     "text-table": "^0.2.0",
     "yargs": "^14.0.0"
   },
