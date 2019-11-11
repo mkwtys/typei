@@ -3,7 +3,7 @@ name: Node CI
 on: [push]
 
 jobs:
-  test-ubuntu:
+  ubuntu:
     runs-on: ubuntu-latest
 
     strategy:
@@ -25,7 +25,7 @@ jobs:
         with: 
           token: ${{secrets.CODECOV_TOKEN}}
 
-  test-windows:
+  windows:
     runs-on: windows-latest
 
     strategy:
