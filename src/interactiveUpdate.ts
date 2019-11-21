@@ -38,7 +38,7 @@ export async function interactiveUpdate(options: { cwd?: string; update?: boolea
     return
   }
 
-  await installPackages({ cwd, packageSummary: selectedPackageSummary })
+  return installPackages({ cwd, packageSummary: selectedPackageSummary })
     .then(output => {
       console.log(output.all)
       console.log(`${chalk.green(`❯`)} complete`)
