@@ -44,6 +44,6 @@ export async function interactiveUpdate(options: { cwd?: string; update?: boolea
       console.log(`${chalk.green(`❯`)} complete`)
     })
     .catch((e: execa.ExecaError) => {
-      console.error(e.stderr)
+      console.error(e)
     })
 }
