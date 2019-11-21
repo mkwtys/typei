@@ -24,5 +24,5 @@ export async function run() {
       v: 'version'
     }).argv
 
-  await interactiveUpdate({ update: argv.update })
+  return interactiveUpdate({ update: argv.update })
 }
