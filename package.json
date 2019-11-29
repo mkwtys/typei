@@ -22,13 +22,32 @@
     "typei": "./bin/typei.js"
   },
   "scripts": {
-    "build": "npm run clean:build && tsc",
+    "build": "npm run clean:build && npm run build:js && npm run build:types",
+    "build:js": "babel src --out-dir lib --extensions \".ts\" --ignore src/**/__tests__/",
+    "build:types": "tsc --emitDeclarationOnly",
     "clean:build": "rimraf lib",
     "clean:coverage": "npm run clean:test && rimraf coverage",
     "clean:test": "rimraf src/__tests__/testProject",
     "coverage": "npm run clean:coverage && jest --coverage",
     "test": "npm run clean:test && jest",
-    "test:update": "jest -u"
+    "test:update": "jest -u",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch"
+  },
+  "babel": {
+    "presets": [
+      "@babel/typescript",
+      [
+        "@babel/env",
+        {
+          "targets": {
+            "node": 8
+          },
+          "useBuiltIns": "entry",
+          "corejs": 3
+        }
+      ]
+    ]
   },
   "prettier": {
     "printWidth": 120,
@@ -36,12 +55,6 @@
     "singleQuote": true
   },
   "jest": {
-    "globals": {
-      "ts-jest": {
-        "diagnostics": false
-      }
-    },
-    "preset": "ts-jest",
     "testEnvironment": "node"
   },
   "dependencies": {
@@ -59,6 +72,9 @@
     "yargs": "^15.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "7.7.4",
+    "@babel/preset-env": "7.7.4",
+    "@babel/preset-typescript": "7.7.4",
     "@types/inquirer": "6.5.0",
     "@types/jest": "24.0.23",
     "@types/mkdirp": "0.5.2",
@@ -71,7 +87,6 @@
     "jest": "24.9.0",
     "mkdirp": "0.5.1",
     "rimraf": "3.0.0",
-    "ts-jest": "24.2.0",
     "typescript": "3.7.2"
   }
 }
