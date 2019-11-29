@@ -20,14 +20,16 @@ const fixtures = [
 
 function test(packageManager, fixtureName) {
   it(`${packageManager}: ${fixtureName}`, async () => {
-    jest.setTimeout(60000)
-    rimraf.sync(cwd)
-    mkdirp.sync(cwd)
     const expectedPackage = require(`./fixtures/${fixtureName}/expected.json`)
     const fixturePackage = require(`./fixtures/${fixtureName}/fixture.json`)
     const dir = cwd ? `cd ${cwd} &&` : ''
     const command = `${dir} ${packageManager} install`
+    const spyLog = jest.spyOn(console, 'log')
 
+    spyLog.mockImplementation(x => x)
+    jest.setTimeout(60000)
+    rimraf.sync(cwd)
+    mkdirp.sync(cwd)
     fs.writeFileSync(actualPackagePath, JSON.stringify(fixturePackage))
     await execa.command(command, { env: { ...process.env }, shell: true })
     await interactiveUpdate({ cwd, update: true })
@@ -36,6 +38,9 @@ function test(packageManager, fixtureName) {
     expect(Object.keys({ ...actualPackage.dependencies, ...actualPackage.devDependencies }).sort()).toEqual(
       Object.keys({ ...expectedPackage.dependencies, ...expectedPackage.devDependencies }).sort()
     )
+
+    spyLog.mockReset()
+    spyLog.mockRestore()
   })
 }
 
