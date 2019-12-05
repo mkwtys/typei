@@ -5,21 +5,17 @@ import { interactiveUpdate } from './'
 
 export async function run() {
   const argv = yargs
-    .usage(
-      `Usage:
-  $ typei`
-    )
+    .usage(`Usage:\n  $ typei`)
     .option({
       update: {
-        alias: 'u',
-        describe: 'Uninteractive update. Apply all updates without prompting',
+        describe: 'Uninteractive update. Apply all updates without prompting.',
         type: 'boolean'
       }
     })
-    .example('$ typei -u', 'Uninteractive update')
+    .example('$ typei -u', '')
     .locale('en')
-    .help()
     .alias({
+      u: 'update',
       h: 'help',
       v: 'version'
     }).argv
