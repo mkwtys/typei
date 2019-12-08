@@ -73,7 +73,7 @@
   },
   "devDependencies": {
     "@babel/cli": "7.7.5",
-    "@babel/preset-env": "7.7.5",
+    "@babel/preset-env": "7.7.6",
     "@babel/preset-typescript": "7.7.4",
     "@types/inquirer": "6.5.0",
     "@types/jest": "24.0.23",
