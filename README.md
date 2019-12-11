@@ -4,6 +4,8 @@
 
 # typei
 
+> types interactive installer
+
 ## Install
 
 ```sh
