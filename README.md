@@ -12,7 +12,16 @@ npm install typei
 ## Usage
 
 ```sh
-$ typei
+Usage:
+  $ typei
+
+Options:
+  --update, -u   Uninteractive update. Apply all updates without prompting
+  -h, --help     Show help
+  -v, --version  Show version number
+
+Examples:
+  $ typei -u
 ```
 
 ## License
