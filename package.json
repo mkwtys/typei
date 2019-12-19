@@ -72,9 +72,9 @@
     "yargs": "^15.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.7.5",
-    "@babel/preset-env": "7.7.6",
-    "@babel/preset-typescript": "7.7.4",
+    "@babel/cli": "7.7.7",
+    "@babel/preset-env": "7.7.7",
+    "@babel/preset-typescript": "7.7.7",
     "@types/inquirer": "6.5.0",
     "@types/jest": "24.0.24",
     "@types/mkdirp": "0.5.2",
