@@ -76,7 +76,7 @@
     "@babel/preset-env": "7.7.7",
     "@babel/preset-typescript": "7.7.7",
     "@types/inquirer": "6.5.0",
-    "@types/jest": "24.0.24",
+    "@types/jest": "24.0.25",
     "@types/mkdirp": "0.5.2",
     "@types/node": "12.12.22",
     "@types/preferred-pm": "2.0.0",
