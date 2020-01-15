@@ -28,11 +28,14 @@ export function createChoices({ packageSummary }: { packageSummary: Summary[] })
     return []
   }
 
-  const choicesAsTable = textTable(choices.map(choice => choice.name), {
-    align: ['l', 'r', 'l', 'l'],
-    stringLength(str) {
-      return stripAnsi(str).length
+  const choicesAsTable = textTable(
+    choices.map(choice => choice.name),
+    {
+      align: ['l', 'r', 'l', 'l'],
+      stringLength(str) {
+        return stripAnsi(str).length
+      }
     }
-  }).split('\n')
+  ).split('\n')
   return [...choices.map((choice, i) => ({ ...choice, name: choicesAsTable[i] }))]
 }
