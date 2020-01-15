@@ -14,24 +14,20 @@ export async function createPackageSummary(options: { cwd?: string; pkg: readPkg
     // @ts-ignore - Module._nodeModulePaths
     const nodeModulesPaths: string[] = Module._nodeModulePaths(cwd)
     const packagePath = path.join(nodeModulesPaths[0], pkgName)
-    if (pathExists.sync(packagePath)) {
-      return packagePath
-    }
+    return pathExists.sync(packagePath) && packagePath
   }
 
   const getPackageFromNodeModules = async (pkgName: string) => {
     const pkgPath = getPackagePath(pkgName)
-    if (pkgPath) {
-      return readPkg({ cwd: pkgPath }).catch(e => {})
-    }
+    return pkgPath && readPkg({ cwd: pkgPath }).catch(_e => {})
   }
 
   const getPackageFromRegistry = async (pkgName: string) => {
-    return packageJson(pkgName).catch(e => {})
+    return packageJson(pkgName).catch(_e => {})
   }
 
   const normalizePkgName = (pkgName: string) => {
-    return /^@/.test(pkgName)
+    return pkgName.startsWith('@')
       ? pkgName
           .slice(1)
           .split('/')
@@ -44,18 +40,16 @@ export async function createPackageSummary(options: { cwd?: string; pkg: readPkg
   }
 
   const isTypesPkgName = (pkgName: string) => {
-    return /^@types\//.test(pkgName)
+    return pkgName.startsWith('@types/')
   }
 
   const hasIndexTypes = (pkgName: string) => {
     const pkgPath = getPackagePath(pkgName)
-    if (pkgPath) {
-      return pathExists.sync(path.join(pkgPath, 'index.d.ts'))
-    }
+    return pkgPath && pathExists.sync(path.join(pkgPath, 'index.d.ts'))
   }
 
-  const summary = await Promise.all(
-    Object.keys({ ...pkg.dependencies, ...pkg.devDependencies }).map(async pkgName => {
+  const summary = await Promise.all<Summary | undefined>(
+    Object.keys({ ...pkg.dependencies, ...pkg.devDependencies }).map<Promise<Summary | undefined>>(async pkgName => {
       const isTypes = isTypesPkgName(pkgName)
 
       if (!isTypes) {
@@ -88,13 +82,13 @@ export async function createPackageSummary(options: { cwd?: string; pkg: readPkg
       return {
         name: pkgName,
         typesName,
-        installedVersion: typesPkgFromNodeModules && typesPkgFromNodeModules.version,
+        installedVersion: typesPkgFromNodeModules ? typesPkgFromNodeModules.version : undefined,
         packageJsonVersion,
         latest,
-        satisfies: !!(packageJsonVersion && semver.satisfies(latest, packageJsonVersion)),
-        deprecated: typesPkgFromNodeModules && (typesPkgFromNodeModules['deprecated'] as string | boolean | undefined)
+        satisfies: packageJsonVersion && semver.satisfies(latest, packageJsonVersion),
+        deprecated: typesPkgFromNodeModules ? typesPkgFromNodeModules.deprecated : undefined
       }
     })
   )
-  return summary.filter(Boolean) as Summary[]
+  return summary.filter(Boolean)
 }

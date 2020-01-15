@@ -6,7 +6,7 @@ import { Summary } from './types'
 async function getPreferredPackageManager({ cwd }: { cwd: string }) {
   const supported = ['npm', 'yarn']
   const pm = await preferredPM(cwd)
-  return pm && supported.indexOf(pm.name) !== -1 ? pm.name : 'npm'
+  return pm && supported.includes(pm.name) ? pm.name : 'npm'
 }
 
 export async function installPackages({ cwd, packageSummary }: { cwd?: string; packageSummary: Summary[] }) {
