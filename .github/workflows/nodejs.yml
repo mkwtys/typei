@@ -3,7 +3,7 @@ name: Node CI
 on: [push]
 
 jobs:
-  test:
+  build:
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -17,10 +17,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: install
-        run: npm install
-      - name: test & generate coverage report
-        run: npm run coverage
+      - name: install, build and test
+        run: |
+          npm install
+          npm run build
+          npm run coverage
       - name: coverage to codecov
         uses: codecov/codecov-action@v1
         with:
