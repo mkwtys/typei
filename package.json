@@ -81,7 +81,7 @@
     "@types/node": "12.12.25",
     "@types/preferred-pm": "2.0.0",
     "@types/rimraf": "2.0.3",
-    "@types/semver": "6.2.0",
+    "@types/semver": "7.1.0",
     "@types/text-table": "0.2.1",
     "@types/yargs": "15.0.2",
     "jest": "25.1.0",
