@@ -87,6 +87,6 @@
     "jest": "25.1.0",
     "mkdirp": "1.0.3",
     "rimraf": "3.0.2",
-    "typescript": "3.7.5"
+    "typescript": "3.8.2"
   }
 }
