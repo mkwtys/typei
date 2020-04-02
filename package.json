@@ -58,7 +58,7 @@
     "testEnvironment": "node"
   },
   "dependencies": {
-    "chalk": "^3.0.0",
+    "chalk": "^4.0.0",
     "execa": "^4.0.0",
     "inquirer": "^7.0.0",
     "ora": "^4.0.2",
