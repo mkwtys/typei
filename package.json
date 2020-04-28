@@ -1,7 +1,7 @@
 {
   "name": "typei",
   "version": "0.6.0",
-  "description": "",
+  "description": "types interactive installer",
   "keywords": [
     "cli",
     "install",
@@ -20,6 +20,10 @@
   "main": "./lib/",
   "bin": {
     "typei": "./bin/typei.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mkwtys/typei.git"
   },
   "scripts": {
     "build": "npm run clean:build && npm run build:js && npm run build:types",
