@@ -11,20 +11,22 @@
     "typings",
     "update"
   ],
-  "license": "MIT",
-  "author": "mkwtys <mkwtys@gmail.com>",
-  "files": [
-    "bin",
-    "lib"
-  ],
-  "main": "./lib/",
-  "bin": {
-    "typei": "./bin/typei.js"
-  },
+  "homepage": "https://github.com/mkwtys/typei",
+  "bugs": "https://github.com/mkwtys/typei/issues",
   "repository": {
     "type": "git",
     "url": "https://github.com/mkwtys/typei.git"
   },
+  "license": "MIT",
+  "author": "mkwtys <mkwtys@gmail.com>",
+  "main": "./lib/",
+  "bin": {
+    "typei": "./bin/typei.js"
+  },
+  "files": [
+    "bin",
+    "lib"
+  ],
   "scripts": {
     "build": "npm run clean:build && npm run build:js && npm run build:types",
     "build:js": "babel src --out-dir lib --extensions \".ts\" --ignore src/**/__tests__/",

@@ -1,8 +1,5 @@
 {
   "extends": ["config:base", ":timezone(Asia/Tokyo)", ":automergePatch"],
-  "enabledManagers": [
-      "npm",
-      "github-actions"
-    ],
+  "enabledManagers": ["npm", "github-actions"],
   "labels": ["dependencies"]
 }
