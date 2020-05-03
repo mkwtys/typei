@@ -9,7 +9,7 @@
 ## Install
 
 ```sh
-npm install typei
+npm i -g typei
 ```
 
 ## Usage
