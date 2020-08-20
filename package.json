@@ -81,7 +81,7 @@
     "@babel/cli": "7.10.5",
     "@babel/preset-env": "7.11.0",
     "@babel/preset-typescript": "7.10.4",
-    "@types/inquirer": "7.3.0",
+    "@types/inquirer": "7.3.1",
     "@types/jest": "26.0.10",
     "@types/mkdirp": "1.0.1",
     "@types/node": "12.12.54",
