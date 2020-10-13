@@ -90,7 +90,7 @@
     "@types/semver": "7.3.4",
     "@types/text-table": "0.2.1",
     "@types/yargs": "15.0.8",
-    "jest": "26.4.2",
+    "jest": "26.5.3",
     "mkdirp": "1.0.4",
     "rimraf": "3.0.2",
     "typescript": "3.9.7"
