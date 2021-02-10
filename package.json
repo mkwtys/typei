@@ -89,7 +89,7 @@
     "@types/rimraf": "3.0.0",
     "@types/semver": "7.3.4",
     "@types/text-table": "0.2.1",
-    "@types/yargs": "15.0.12",
+    "@types/yargs": "15.0.13",
     "jest": "26.6.3",
     "mkdirp": "1.0.4",
     "rimraf": "3.0.2",
