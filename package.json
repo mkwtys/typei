@@ -82,7 +82,7 @@
     "@babel/preset-env": "7.12.13",
     "@babel/preset-typescript": "7.12.13",
     "@types/inquirer": "7.3.1",
-    "@types/jest": "26.0.19",
+    "@types/jest": "26.0.20",
     "@types/mkdirp": "1.0.1",
     "@types/node": "12.19.16",
     "@types/preferred-pm": "2.0.0",
