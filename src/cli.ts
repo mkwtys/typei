@@ -9,15 +9,15 @@ export async function run() {
     .option({
       update: {
         describe: 'Uninteractive update. Apply all updates without prompting.',
-        type: 'boolean'
-      }
+        type: 'boolean',
+      },
     })
     .example('$ typei -u', '')
     .locale('en')
     .alias({
       u: 'update',
       h: 'help',
-      v: 'version'
+      v: 'version',
     }).argv
 
   return interactiveUpdate({ update: argv.update })

@@ -28,8 +28,8 @@ export async function interactiveUpdate(options: { cwd?: string; update?: boolea
         message: 'choose which types to update',
         type: 'checkbox',
         choices,
-        pageSize: process.stdout.rows - 2
-      }
+        pageSize: process.stdout.rows - 2,
+      },
     ])
     selectedPackageSummary = answers.types
   }
@@ -39,7 +39,7 @@ export async function interactiveUpdate(options: { cwd?: string; update?: boolea
   }
 
   return installPackages({ cwd, packageSummary: selectedPackageSummary })
-    .then(output => {
+    .then((output) => {
       console.log(output.all)
       console.log(`${chalk.green(`❯`)} complete`)
     })

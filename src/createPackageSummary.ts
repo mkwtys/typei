@@ -19,20 +19,15 @@ export async function createPackageSummary(options: { cwd?: string; pkg: readPkg
 
   const getPackageFromNodeModules = async (pkgName: string) => {
     const pkgPath = getPackagePath(pkgName)
-    return pkgPath && readPkg({ cwd: pkgPath }).catch(_e => {})
+    return pkgPath && readPkg({ cwd: pkgPath }).catch((_e) => {})
   }
 
   const getPackageFromRegistry = async (pkgName: string) => {
-    return packageJson(pkgName).catch(_e => {})
+    return packageJson(pkgName).catch((_e) => {})
   }
 
   const normalizePkgName = (pkgName: string) => {
-    return pkgName.startsWith('@')
-      ? pkgName
-          .slice(1)
-          .split('/')
-          .join('__')
-      : pkgName
+    return pkgName.startsWith('@') ? pkgName.slice(1).split('/').join('__') : pkgName
   }
 
   const getTypesName = (pkgName: string) => {
@@ -49,7 +44,7 @@ export async function createPackageSummary(options: { cwd?: string; pkg: readPkg
   }
 
   const summary = await Promise.all<Summary | undefined>(
-    Object.keys({ ...pkg.dependencies, ...pkg.devDependencies }).map<Promise<Summary | undefined>>(async pkgName => {
+    Object.keys({ ...pkg.dependencies, ...pkg.devDependencies }).map<Promise<Summary | undefined>>(async (pkgName) => {
       const isTypes = isTypesPkgName(pkgName)
 
       if (!isTypes) {
@@ -86,7 +81,7 @@ export async function createPackageSummary(options: { cwd?: string; pkg: readPkg
         packageJsonVersion,
         latest,
         satisfies: packageJsonVersion && semver.satisfies(latest, packageJsonVersion),
-        deprecated: typesPkgFromNodeModules ? typesPkgFromNodeModules.deprecated : undefined
+        deprecated: typesPkgFromNodeModules ? typesPkgFromNodeModules.deprecated : undefined,
       }
     })
   )

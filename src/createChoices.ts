@@ -6,22 +6,22 @@ import { Choice, Summary } from './types'
 
 export function createChoices({ packageSummary }: { packageSummary: Summary[] }): Choice[] {
   const choices = packageSummary
-    .filter(summary => !summary.deprecated)
-    .filter(summary => {
+    .filter((summary) => !summary.deprecated)
+    .filter((summary) => {
       if (!summary.satisfies || !summary.installedVersion) {
         return true
       }
       return semver.lt(summary.installedVersion, summary.latest)
     })
-    .map(summary => ({
+    .map((summary) => ({
       name: [
         chalk.cyan(summary.typesName),
         summary.installedVersion ? chalk.white(summary.installedVersion) : chalk.white('missing'),
         chalk.white('❯'),
-        chalk.white.bold(summary.latest)
+        chalk.white.bold(summary.latest),
       ],
       value: summary,
-      short: `${summary.typesName}@${summary.latest}`
+      short: `${summary.typesName}@${summary.latest}`,
     }))
 
   if (!choices.length) {
@@ -29,12 +29,12 @@ export function createChoices({ packageSummary }: { packageSummary: Summary[] })
   }
 
   const choicesAsTable = textTable(
-    choices.map(choice => choice.name),
+    choices.map((choice) => choice.name),
     {
       align: ['l', 'r', 'l', 'l'],
       stringLength(str) {
         return stripAnsi(str).length
-      }
+      },
     }
   ).split('\n')
   return [...choices.map((choice, i) => ({ ...choice, name: choicesAsTable[i] }))]

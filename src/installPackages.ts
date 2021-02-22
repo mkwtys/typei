@@ -12,7 +12,7 @@ async function getPreferredPackageManager({ cwd }: { cwd: string }) {
 export async function installPackages({ cwd, packageSummary }: { cwd?: string; packageSummary: Summary[] }) {
   const dir = cwd ? `cd ${cwd} &&` : ''
   const packageManager = await getPreferredPackageManager({ cwd: process.cwd() })
-  const packages = packageSummary.map(summary => `${summary.typesName}@${summary.latest}`).join(' ')
+  const packages = packageSummary.map((summary) => `${summary.typesName}@${summary.latest}`).join(' ')
   const command = `${dir} ${packageManager} ${packageManager === 'yarn' ? 'add -W' : 'install'} -D ${packages}`
   const spinner = ora(`install types...`)
 
@@ -21,9 +21,9 @@ export async function installPackages({ cwd, packageSummary }: { cwd?: string; p
     .command(command, {
       all: true,
       env: { ...process.env },
-      shell: true
+      shell: true,
     })
-    .catch(e => {
+    .catch((e) => {
       spinner.stop()
       throw e
     })
