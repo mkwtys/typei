@@ -18,7 +18,7 @@ const fixtures = [
   'scoped-package'
 ]
 
-jest.setTimeout(10000)
+jest.setTimeout(20000)
 
 function test(packageManager, fixtureName) {
   it(`${packageManager}: ${fixtureName}`, async () => {
