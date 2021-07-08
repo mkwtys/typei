@@ -18,6 +18,8 @@ const fixtures = [
   'scoped-package'
 ]
 
+jest.setTimeout(30000)
+
 function test(packageManager, fixtureName) {
   it(`${packageManager}: ${fixtureName}`, async () => {
     const expectedPackage = require(`./fixtures/${fixtureName}/expected.json`)
@@ -26,8 +28,7 @@ function test(packageManager, fixtureName) {
     const command = `${dir} ${packageManager} install`
     const spyLog = jest.spyOn(console, 'log')
 
-    spyLog.mockImplementation(x => x)
-    jest.setTimeout(60000)
+    spyLog.mockImplementation((x) => x)
     rimraf.sync(cwd)
     mkdirp.sync(cwd)
     fs.writeFileSync(actualPackagePath, JSON.stringify(fixturePackage))
