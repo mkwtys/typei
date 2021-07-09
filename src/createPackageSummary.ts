@@ -2,11 +2,11 @@ import Module from 'module'
 import packageJson from 'package-json'
 import path from 'path'
 import pathExists from 'path-exists'
-import readPkg from 'read-pkg'
+import { readPackageAsync, PackageJson } from 'read-pkg'
 import semver from 'semver'
 import { Summary } from './types'
 
-export async function createPackageSummary(options: { cwd?: string; pkg: readPkg.PackageJson }) {
+export async function createPackageSummary(options: { cwd?: string; pkg: PackageJson }) {
   const { pkg } = options
   const cwd = options.cwd ? options.cwd : process.cwd()
 
@@ -19,7 +19,7 @@ export async function createPackageSummary(options: { cwd?: string; pkg: readPkg
 
   const getPackageFromNodeModules = async (pkgName: string) => {
     const pkgPath = getPackagePath(pkgName)
-    return pkgPath && readPkg({ cwd: pkgPath }).catch((_e) => {})
+    return pkgPath && readPackageAsync({ cwd: pkgPath }).catch((_e) => {})
   }
 
   const getPackageFromRegistry = async (pkgName: string) => {
