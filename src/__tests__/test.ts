@@ -5,8 +5,9 @@ import path from 'path'
 import rimraf from 'rimraf'
 import { interactiveUpdate } from '../'
 import { jest } from '@jest/globals'
+import { fileURLToPath } from 'url'
 
-const cwd = path.join(path.dirname(new URL(import.meta.url).pathname), 'testProject')
+const cwd = path.join(path.dirname(fileURLToPath(import.meta.url)), 'testProject')
 const actualPackagePath = path.join(cwd, 'package.json')
 const packageManagers = ['npm', 'yarn']
 const fixtures = [
