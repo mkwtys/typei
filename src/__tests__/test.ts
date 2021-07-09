@@ -4,8 +4,9 @@ import mkdirp from 'mkdirp'
 import path from 'path'
 import rimraf from 'rimraf'
 import { interactiveUpdate } from '../'
+import { jest } from '@jest/globals'
 
-const cwd = path.join(__dirname, 'testProject')
+const cwd = path.join(path.dirname(new URL(import.meta.url).pathname), 'testProject')
 const actualPackagePath = path.join(cwd, 'package.json')
 const packageManagers = ['npm', 'yarn']
 const fixtures = [
@@ -15,15 +16,15 @@ const fixtures = [
   'installed-types',
   'no-deps',
   'not-registered-in-types-registry',
-  'scoped-package'
+  'scoped-package',
 ]
 
 jest.setTimeout(60000)
 
 function test(packageManager, fixtureName) {
   it(`${packageManager}: ${fixtureName}`, async () => {
-    const expectedPackage = require(`./fixtures/${fixtureName}/expected.json`)
-    const fixturePackage = require(`./fixtures/${fixtureName}/fixture.json`)
+    const expectedPackage = await import(`./fixtures/${fixtureName}/expected.json`)
+    const fixturePackage = await import(`./fixtures/${fixtureName}/fixture.json`)
     const dir = cwd ? `cd ${cwd} &&` : ''
     const command = `${dir} ${packageManager} install`
     const spyLog = jest.spyOn(console, 'log')
@@ -45,8 +46,8 @@ function test(packageManager, fixtureName) {
   })
 }
 
-packageManagers.forEach(packageManager => {
-  fixtures.forEach(fixture => {
+packageManagers.forEach((packageManager) => {
+  fixtures.forEach((fixture) => {
     test(packageManager, fixture)
   })
 })

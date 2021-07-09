@@ -34,9 +34,9 @@
     "clean:build": "rimraf lib",
     "clean:coverage": "npm run clean:test && rimraf coverage",
     "clean:test": "rimraf src/__tests__/testProject",
-    "coverage": "npm run clean:coverage && jest --coverage",
-    "test": "npm run clean:test && jest",
-    "test:update": "jest -u",
+    "coverage": "npm run clean:coverage && NODE_OPTIONS=--experimental-vm-modules jest --coverage",
+    "test": "npm run clean:test && NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:update": "NODE_OPTIONS=--experimental-vm-modules jest -u",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch"
   },
@@ -61,7 +61,10 @@
     "singleQuote": true
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ]
   },
   "dependencies": {
     "chalk": "^4.0.0",
@@ -71,7 +74,7 @@
     "package-json": "^7.0.0",
     "path-exists": "^4.0.0",
     "preferred-pm": "^3.0.0",
-    "read-pkg": "^5.2.0",
+    "read-pkg": "^6.0.0",
     "semver": "^7.1.1",
     "strip-ansi": "^6.0.0",
     "text-table": "^0.2.0",
