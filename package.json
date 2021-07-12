@@ -76,7 +76,7 @@
     "preferred-pm": "^3.0.0",
     "read-pkg": "^6.0.0",
     "semver": "^7.1.1",
-    "strip-ansi": "^6.0.0",
+    "strip-ansi": "^7.0.0",
     "text-table": "^0.2.0",
     "yargs": "^17.0.0"
   },
