@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-const cli = require('../lib/cli')
-cli
-  .run()
+import { run } from '../lib/cli.js'
+
+run()
   .then(() => {
     process.exit(0)
   })
