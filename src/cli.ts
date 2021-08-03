@@ -4,7 +4,7 @@ import yargs from 'yargs'
 import { interactiveUpdate } from './'
 
 export async function run() {
-  const argv = await yargs
+  const argv = await yargs(process.argv.slice(2))
     .usage(`Usage:\n  $ typei`)
     .option({
       update: {

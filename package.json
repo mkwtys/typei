@@ -19,6 +19,7 @@
   },
   "license": "MIT",
   "author": "mkwtys <mkwtys@gmail.com>",
+  "type": "module",
   "main": "./lib/",
   "bin": {
     "typei": "./bin/typei.js"
@@ -49,8 +50,9 @@
           "targets": {
             "node": 12
           },
-          "useBuiltIns": "entry",
-          "corejs": 3
+          "useBuiltIns": "usage",
+          "corejs": 3,
+          "modules": false
         }
       ]
     ]
@@ -61,10 +63,10 @@
     "singleQuote": true
   },
   "jest": {
-    "testEnvironment": "node",
     "extensionsToTreatAsEsm": [
       ".ts"
-    ]
+    ],
+    "testEnvironment": "node"
   },
   "dependencies": {
     "chalk": "^4.0.0",

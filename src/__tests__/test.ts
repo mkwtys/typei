@@ -3,9 +3,9 @@ import fs from 'fs'
 import mkdirp from 'mkdirp'
 import path from 'path'
 import rimraf from 'rimraf'
-import { interactiveUpdate } from '../'
 import { jest } from '@jest/globals'
 import { fileURLToPath } from 'url'
+import { interactiveUpdate } from '../interactiveUpdate'
 
 const cwd = path.join(path.dirname(fileURLToPath(import.meta.url)), 'testProject')
 const actualPackagePath = path.join(cwd, 'package.json')
