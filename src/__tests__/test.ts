@@ -1,5 +1,5 @@
 import execa from 'execa'
-import fs from 'fs'
+import fs from 'node:fs'
 import mkdirp from 'mkdirp'
 import path from 'path'
 import rimraf from 'rimraf'
