@@ -49,7 +49,7 @@
     "inquirer": "^8.0.0",
     "ora": "^6.0.0",
     "package-json": "^7.0.0",
-    "path-exists": "5.0.0",
+    "path-exists": "^5.0.0",
     "preferred-pm": "^3.0.0",
     "read-pkg": "^7.0.0",
     "semver": "^7.1.1",
