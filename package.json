@@ -29,28 +29,24 @@
     "lib"
   ],
   "scripts": {
-    "build": "npm run clean:build && npm run build:js && npm run build:types",
-    "build:js": "babel src --out-dir lib --extensions \".ts\" --ignore src/**/__tests__/",
-    "build:types": "tsc --emitDeclarationOnly",
+    "build": "npm run clean:build && npm run build:js",
+    "build:js": "babel src --out-dir lib",
     "clean:build": "rimraf lib",
     "clean:coverage": "npm run clean:test && rimraf coverage",
-    "clean:test": "rimraf src/__tests__/testProject",
+    "clean:test": "rimraf test/testProject",
     "coverage": "npm run clean:coverage && cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage",
     "test": "npm run clean:test && cross-env NODE_OPTIONS=--experimental-vm-modules jest",
-    "test:update": "cross-env NODE_OPTIONS=--experimental-vm-modules jest -u",
-    "type-check": "tsc --noEmit",
-    "type-check:watch": "npm run type-check -- --watch"
+    "test:update": "cross-env NODE_OPTIONS=--experimental-vm-modules jest -u"
   },
   "babel": {
     "presets": [
-      "@babel/typescript",
       [
         "@babel/env",
         {
           "targets": {
-            "node": 12
+            "node": 12,
+            "esmodules": true
           },
-          "useBuiltIns": "usage",
           "corejs": 3,
           "modules": false
         }
@@ -63,9 +59,6 @@
     "singleQuote": true
   },
   "jest": {
-    "extensionsToTreatAsEsm": [
-      ".ts"
-    ],
     "testEnvironment": "node"
   },
   "dependencies": {
@@ -85,7 +78,7 @@
   "devDependencies": {
     "@babel/cli": "7.15.4",
     "@babel/preset-env": "7.15.6",
-    "@babel/preset-typescript": "7.15.0",
+    "@types/babel__preset-env": "7.9.2",
     "@types/inquirer": "8.1.1",
     "@types/jest": "27.0.1",
     "@types/mkdirp": "1.0.2",
@@ -98,7 +91,6 @@
     "cross-env": "7.0.3",
     "jest": "27.1.1",
     "mkdirp": "1.0.4",
-    "rimraf": "3.0.2",
-    "typescript": "4.4.2"
+    "rimraf": "3.0.2"
   }
 }
