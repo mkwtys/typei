@@ -1,4 +1,4 @@
-export type Summary = {
+export declare type Summary = {
   name: string
   typesName: string
   installedVersion?: string
@@ -8,7 +8,7 @@ export type Summary = {
   deprecated?: string | boolean
 }
 
-export type Choice = {
+export declare type Choice = {
   name: string
   value: Summary
   short: string
