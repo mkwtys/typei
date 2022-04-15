@@ -41,7 +41,10 @@
     "singleQuote": true
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "#(.*)": "<rootDir>/node_modules/$1"
+    }
   },
   "dependencies": {
     "chalk": "^4.0.0",
