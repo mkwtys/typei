@@ -1,4 +1,4 @@
-import execa from 'execa'
+import { ExecaReturnValue } from 'execa'
 import { Summary } from './types'
 export declare function installPackages({
   cwd,
@@ -6,4 +6,4 @@ export declare function installPackages({
 }: {
   cwd?: string
   packageSummary: Summary[]
-}): Promise<execa.ExecaReturnValue<string>>
+}): Promise<ExecaReturnValue<string>>

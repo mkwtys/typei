@@ -1,4 +1,4 @@
-import execa from 'execa'
+import { execaCommand } from 'execa'
 import fs from 'node:fs'
 import mkdirp from 'mkdirp'
 import path from 'path'
@@ -34,7 +34,7 @@ function test(packageManager, fixtureName) {
     rimraf.sync(cwd)
     mkdirp.sync(cwd)
     fs.writeFileSync(actualPackagePath, JSON.stringify(fixturePackage))
-    await execa.command(command, { env: { ...process.env }, shell: true })
+    await execaCommand(command, { env: { ...process.env }, shell: true })
     await interactiveUpdate({ cwd, update: true })
 
     const actualPackage = JSON.parse(fs.readFileSync(actualPackagePath, { encoding: 'utf8' }))
