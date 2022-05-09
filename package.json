@@ -62,7 +62,7 @@
   },
   "devDependencies": {
     "@types/inquirer": "8.2.1",
-    "@types/jest": "27.4.1",
+    "@types/jest": "27.5.0",
     "@types/mkdirp": "1.0.2",
     "@types/node": "16.11.33",
     "@types/preferred-pm": "2.0.0",
@@ -71,7 +71,7 @@
     "@types/text-table": "0.2.2",
     "@types/yargs": "17.0.10",
     "cross-env": "7.0.3",
-    "jest": "28.0.3",
+    "jest": "28.1.0",
     "mkdirp": "1.0.4",
     "rimraf": "3.0.2"
   }
