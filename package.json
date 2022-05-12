@@ -62,7 +62,7 @@
   },
   "devDependencies": {
     "@types/inquirer": "8.2.1",
-    "@types/jest": "27.5.0",
+    "@types/jest": "27.5.1",
     "@types/mkdirp": "1.0.2",
     "@types/node": "16.11.34",
     "@types/preferred-pm": "2.0.0",
