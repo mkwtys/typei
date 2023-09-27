@@ -1,6 +1,6 @@
 import { execaCommand } from 'execa'
 import fs from 'node:fs'
-import mkdirp from 'mkdirp'
+import { mkdirp } from 'mkdirp'
 import path from 'path'
 import rimraf from 'rimraf'
 import { jest } from '@jest/globals'
