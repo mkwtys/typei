@@ -68,7 +68,7 @@
     "@types/preferred-pm": "2.0.0",
     "@types/rimraf": "3.0.2",
     "@types/semver": "7.5.5",
-    "@types/text-table": "0.2.4",
+    "@types/text-table": "0.2.5",
     "@types/yargs": "17.0.29",
     "cross-env": "7.0.3",
     "jest": "29.7.0",
