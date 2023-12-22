@@ -50,7 +50,7 @@
     "chalk": "^5.0.0",
     "execa": "^7.0.0",
     "inquirer": "^9.0.0",
-    "ora": "^6.0.0",
+    "ora": "^7.0.0",
     "package-json": "^8.0.0",
     "path-exists": "^5.0.0",
     "preferred-pm": "^3.0.0",
