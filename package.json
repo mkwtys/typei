@@ -65,7 +65,7 @@
     "@types/jest": "29.5.12",
     "@types/mkdirp": "2.0.0",
     "@types/node": "20.11.30",
-    "@types/preferred-pm": "2.0.0",
+    "@types/preferred-pm": "3.0.0",
     "@types/rimraf": "3.0.2",
     "@types/semver": "7.5.8",
     "@types/text-table": "0.2.5",
