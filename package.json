@@ -61,7 +61,7 @@
     "yargs": "^17.0.0"
   },
   "devDependencies": {
-    "@types/inquirer": "9.0.7",
+    "@types/inquirer": "9.0.8",
     "@types/jest": "29.5.14",
     "@types/mkdirp": "2.0.0",
     "@types/node": "22.15.3",
