@@ -64,7 +64,7 @@
     "@types/inquirer": "9.0.8",
     "@types/jest": "29.5.14",
     "@types/mkdirp": "2.0.0",
-    "@types/node": "22.15.19",
+    "@types/node": "22.15.21",
     "@types/preferred-pm": "3.0.0",
     "@types/rimraf": "4.0.5",
     "@types/semver": "7.7.0",
