@@ -58,7 +58,7 @@
     "semver": "^7.1.1",
     "strip-ansi": "^7.0.0",
     "text-table": "^0.2.0",
-    "yargs": "^17.0.0"
+    "yargs": "^18.0.0"
   },
   "devDependencies": {
     "@types/inquirer": "9.0.8",
