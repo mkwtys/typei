@@ -70,7 +70,7 @@
     "@types/semver": "7.7.0",
     "@types/text-table": "0.2.5",
     "@types/yargs": "17.0.33",
-    "cross-env": "7.0.3",
+    "cross-env": "10.0.0",
     "jest": "30.0.5",
     "mkdirp": "3.0.1",
     "rimraf": "6.0.1"
