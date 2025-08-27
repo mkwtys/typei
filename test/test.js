@@ -3,7 +3,7 @@ import fs from 'node:fs'
 import { mkdirp } from 'mkdirp'
 import path from 'path'
 import { rimraf } from 'rimraf'
-import { jest } from '@jest/globals'
+import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest'
 import { fileURLToPath } from 'url'
 import { interactiveUpdate } from '../lib/interactiveUpdate.js'
 
@@ -20,7 +20,6 @@ const fixtures = [
   'scoped-package',
 ]
 
-jest.setTimeout(60000)
 
 function test(packageManager, fixtureName) {
   it(`${packageManager}: ${fixtureName}`, async () => {
@@ -28,7 +27,7 @@ function test(packageManager, fixtureName) {
     const fixturePackage = await import(`./fixtures/${fixtureName}/fixture.json`)
     const dir = cwd ? `cd ${cwd} &&` : ''
     const command = `${dir} ${packageManager} install`
-    const spyLog = jest.spyOn(console, 'log')
+    const spyLog = vi.spyOn(console, 'log')
 
     spyLog.mockImplementation((x) => x)
     rimraf.sync(cwd)
@@ -47,8 +46,10 @@ function test(packageManager, fixtureName) {
   })
 }
 
-packageManagers.forEach((packageManager) => {
-  fixtures.forEach((fixture) => {
-    test(packageManager, fixture)
+describe('typei', () => {
+  packageManagers.forEach((packageManager) => {
+    fixtures.forEach((fixture) => {
+      test(packageManager, fixture)
+    })
   })
 })
