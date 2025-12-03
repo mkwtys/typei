@@ -47,7 +47,7 @@
     "package-json": "^10.0.0",
     "path-exists": "^5.0.0",
     "preferred-pm": "^4.0.0",
-    "read-pkg": "^9.0.0",
+    "read-pkg": "^10.0.0",
     "semver": "^7.1.1",
     "strip-ansi": "^7.0.0",
     "text-table": "^0.2.0",
