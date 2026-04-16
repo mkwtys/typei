@@ -23,7 +23,8 @@ const fixtures = [
 ]
 
 function test(packageManager, fixtureName) {
-  it.concurrent(`${packageManager}: ${fixtureName}`, async () => {
+  const testFn = packageManager === 'npm' ? it.concurrent : it
+  testFn(`${packageManager}: ${fixtureName}`, async () => {
     const expectedPackageModule = await import(`./fixtures/${fixtureName}/expected.json`)
     const fixturePackageModule = await import(`./fixtures/${fixtureName}/fixture.json`)
     const expectedPackage = expectedPackageModule.default ?? expectedPackageModule
@@ -35,8 +36,7 @@ function test(packageManager, fixtureName) {
     try {
       mkdirp.sync(cwd)
       fs.writeFileSync(actualPackagePath, JSON.stringify(fixturePackage))
-      const installFlags = packageManager === 'yarn' ? `--cache-folder ${path.join(cwd, '.yarn-cache')}` : ''
-      await execaCommand(`cd ${cwd} && ${packageManager} install ${installFlags}`, { env: { ...process.env }, shell: true })
+      await execaCommand(`cd ${cwd} && ${packageManager} install`, { env: { ...process.env }, shell: true })
       await interactiveUpdate({ cwd, update: true })
 
       const actualPackage = JSON.parse(fs.readFileSync(actualPackagePath, { encoding: 'utf8' }))
