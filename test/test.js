@@ -35,7 +35,8 @@ function test(packageManager, fixtureName) {
     try {
       mkdirp.sync(cwd)
       fs.writeFileSync(actualPackagePath, JSON.stringify(fixturePackage))
-      await execaCommand(`cd ${cwd} && ${packageManager} install`, { env: { ...process.env }, shell: true })
+      const installFlags = packageManager === 'yarn' ? `--cache-folder ${path.join(cwd, '.yarn-cache')}` : ''
+      await execaCommand(`cd ${cwd} && ${packageManager} install ${installFlags}`, { env: { ...process.env }, shell: true })
       await interactiveUpdate({ cwd, update: true })
 
       const actualPackage = JSON.parse(fs.readFileSync(actualPackagePath, { encoding: 'utf8' }))
