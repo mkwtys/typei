@@ -14,6 +14,9 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         node-version: [20.x, 22.x, 24.x]
+        include:
+          - os: windows-latest
+            test_pm: npm
 
     steps:
       - uses: actions/checkout@v6
@@ -24,6 +27,8 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run coverage
+        env:
+          TEST_PM: ${{ matrix.test_pm }}
       - uses: codecov/codecov-action@v6
         with:
           token: ${{secrets.CODECOV_TOKEN}}
