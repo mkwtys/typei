@@ -59,10 +59,9 @@ describe('installPackages', () => {
 
     expect(preferredPMMock).toHaveBeenCalledWith('/tmp/project')
     expect(execaMock).toHaveBeenCalledWith(
-      'cd /tmp/project && npm install -D @types/foo@1.2.3',
-      expect.objectContaining({
-        shell: true,
-      })
+      'npm',
+      ['install', '-D', '@types/foo@1.2.3'],
+      expect.objectContaining({ cwd: '/tmp/project' })
     )
     expect(spinnerStartMock).toHaveBeenCalledTimes(1)
     expect(spinnerStopMock).toHaveBeenCalledTimes(1)
@@ -80,10 +79,9 @@ describe('installPackages', () => {
     })
 
     expect(execaMock).toHaveBeenCalledWith(
-      'cd /tmp/project && yarn add -W -D @types/foo@1.2.3 @types/bar@4.5.6',
-      expect.objectContaining({
-        shell: true,
-      })
+      'yarn',
+      ['add', '-W', '-D', '@types/foo@1.2.3', '@types/bar@4.5.6'],
+      expect.objectContaining({ cwd: '/tmp/project' })
     )
   })
 

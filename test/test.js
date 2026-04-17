@@ -1,15 +1,17 @@
 import { execaCommand } from 'execa'
 import fs from 'node:fs'
 import { mkdirp } from 'mkdirp'
+import os from 'node:os'
 import path from 'path'
 import { rimraf } from 'rimraf'
-import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest'
+import { vi, describe, it, expect } from 'vitest'
 import { fileURLToPath } from 'url'
 import { interactiveUpdate } from '../lib/interactiveUpdate.js'
 
-const cwd = path.join(path.dirname(fileURLToPath(import.meta.url)), 'testProject')
-const actualPackagePath = path.join(cwd, 'package.json')
-const packageManagers = ['npm', 'yarn']
+const testDir = path.join(path.dirname(fileURLToPath(import.meta.url)), 'testProject')
+const packageManagers = process.env.TEST_PM
+  ? [process.env.TEST_PM]
+  : ['npm', 'yarn']
 const fixtures = [
   'has-index-types',
   'has-types',
@@ -20,29 +22,30 @@ const fixtures = [
   'scoped-package',
 ]
 
-
 function test(packageManager, fixtureName) {
-  it(`${packageManager}: ${fixtureName}`, async () => {
-    const expectedPackage = await import(`./fixtures/${fixtureName}/expected.json`)
-    const fixturePackage = await import(`./fixtures/${fixtureName}/fixture.json`)
-    const dir = cwd ? `cd ${cwd} &&` : ''
-    const command = `${dir} ${packageManager} install`
-    const spyLog = vi.spyOn(console, 'log')
+  const testFn = packageManager === 'npm' ? it.concurrent : it
+  testFn(`${packageManager}: ${fixtureName}`, async () => {
+    const expectedPackageModule = await import(`./fixtures/${fixtureName}/expected.json`)
+    const fixturePackageModule = await import(`./fixtures/${fixtureName}/fixture.json`)
+    const expectedPackage = expectedPackageModule.default ?? expectedPackageModule
+    const fixturePackage = fixturePackageModule.default ?? fixturePackageModule
 
-    spyLog.mockImplementation((x) => x)
-    rimraf.sync(cwd)
-    mkdirp.sync(cwd)
-    fs.writeFileSync(actualPackagePath, JSON.stringify(fixturePackage))
-    await execaCommand(command, { env: { ...process.env }, shell: true })
-    await interactiveUpdate({ cwd, update: true })
+    const cwd = fs.mkdtempSync(path.join(os.tmpdir(), `typei-${packageManager}-${fixtureName}-`))
+    const actualPackagePath = path.join(cwd, 'package.json')
 
-    const actualPackage = JSON.parse(fs.readFileSync(actualPackagePath, { encoding: 'utf8' }))
-    expect(Object.keys({ ...actualPackage.dependencies, ...actualPackage.devDependencies }).sort()).toEqual(
-      Object.keys({ ...expectedPackage.dependencies, ...expectedPackage.devDependencies }).sort()
-    )
+    try {
+      mkdirp.sync(cwd)
+      fs.writeFileSync(actualPackagePath, JSON.stringify(fixturePackage))
+      await execaCommand(`${packageManager} install`, { cwd, env: { ...process.env }, shell: true })
+      await interactiveUpdate({ cwd, update: true })
 
-    spyLog.mockReset()
-    spyLog.mockRestore()
+      const actualPackage = JSON.parse(fs.readFileSync(actualPackagePath, { encoding: 'utf8' }))
+      expect(Object.keys({ ...actualPackage.dependencies, ...actualPackage.devDependencies }).sort()).toEqual(
+        Object.keys({ ...expectedPackage.dependencies, ...expectedPackage.devDependencies }).sort()
+      )
+    } finally {
+      rimraf.sync(cwd)
+    }
   })
 }
 

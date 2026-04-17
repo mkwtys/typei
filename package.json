@@ -21,6 +21,7 @@
   "author": "mkwtys <mkwtys@gmail.com>",
   "type": "module",
   "main": "./lib/",
+  "types": "./lib/index.d.ts",
   "bin": {
     "typei": "./bin/typei.js"
   },
