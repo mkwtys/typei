@@ -36,7 +36,7 @@ function test(packageManager, fixtureName) {
     try {
       mkdirp.sync(cwd)
       fs.writeFileSync(actualPackagePath, JSON.stringify(fixturePackage))
-      await execaCommand(`cd ${cwd} && ${packageManager} install`, { env: { ...process.env }, shell: true })
+      await execaCommand(`${packageManager} install`, { cwd, env: { ...process.env }, shell: true })
       await interactiveUpdate({ cwd, update: true })
 
       const actualPackage = JSON.parse(fs.readFileSync(actualPackagePath, { encoding: 'utf8' }))
