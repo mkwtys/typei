@@ -19,6 +19,7 @@
   },
   "license": "MIT",
   "author": "mkwtys <mkwtys@gmail.com>",
+  "packageManager": "pnpm@10.33.2",
   "type": "module",
   "main": "./lib/",
   "types": "./lib/index.d.ts",
