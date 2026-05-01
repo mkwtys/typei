@@ -1,17 +1,12 @@
 import { execaCommand } from 'execa'
-import fs from 'node:fs'
-import { mkdirp } from 'mkdirp'
-import os from 'node:os'
-import path from 'path'
-import { rimraf } from 'rimraf'
 import { vi, describe, it, expect } from 'vitest'
-import { fileURLToPath } from 'url'
+import fs from 'node:fs'
+import os from 'node:os'
+import path from 'node:path'
+
 import { interactiveUpdate } from '../lib/interactiveUpdate.js'
 
-const testDir = path.join(path.dirname(fileURLToPath(import.meta.url)), 'testProject')
-const packageManagers = process.env.TEST_PM
-  ? [process.env.TEST_PM]
-  : ['npm', 'yarn']
+const packageManagers = process.env.TEST_PM ? [process.env.TEST_PM] : ['npm', 'yarn']
 const fixtures = [
   'has-index-types',
   'has-types',
@@ -34,17 +29,17 @@ function test(packageManager, fixtureName) {
     const actualPackagePath = path.join(cwd, 'package.json')
 
     try {
-      mkdirp.sync(cwd)
+      fs.mkdirSync(cwd, { recursive: true })
       fs.writeFileSync(actualPackagePath, JSON.stringify(fixturePackage))
       await execaCommand(`${packageManager} install`, { cwd, env: { ...process.env }, shell: true })
       await interactiveUpdate({ cwd, update: true })
 
       const actualPackage = JSON.parse(fs.readFileSync(actualPackagePath, { encoding: 'utf8' }))
       expect(Object.keys({ ...actualPackage.dependencies, ...actualPackage.devDependencies }).sort()).toEqual(
-        Object.keys({ ...expectedPackage.dependencies, ...expectedPackage.devDependencies }).sort()
+        Object.keys({ ...expectedPackage.dependencies, ...expectedPackage.devDependencies }).sort(),
       )
     } finally {
-      rimraf.sync(cwd)
+      fs.rmSync(cwd, { recursive: true, force: true })
     }
   })
 }
