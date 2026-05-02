@@ -30,10 +30,8 @@
     "lib"
   ],
   "scripts": {
-    "clean:coverage": "npm run clean:test && rimraf coverage",
-    "clean:test": "rimraf test/testProject",
-    "coverage": "npm run clean:coverage && vitest run --coverage",
-    "test": "npm run clean:test && vitest run"
+    "coverage": "vitest run --coverage",
+    "test": "vitest run"
   },
   "prettier": {
     "printWidth": 120,
@@ -46,7 +44,6 @@
     "inquirer": "^13.0.0",
     "ora": "^9.0.0",
     "package-json": "^10.0.0",
-    "path-exists": "^5.0.0",
     "preferred-pm": "^4.0.0",
     "read-pkg": "^10.0.0",
     "semver": "^7.1.1",
@@ -56,17 +53,13 @@
   },
   "devDependencies": {
     "@types/inquirer": "9.0.9",
-    "@types/mkdirp": "2.0.0",
     "@types/node": "24.12.2",
     "@types/preferred-pm": "3.0.0",
-    "@types/rimraf": "4.0.5",
     "@types/semver": "7.7.1",
     "@types/text-table": "0.2.5",
     "@types/yargs": "17.0.35",
     "@vitest/coverage-v8": "4.1.4",
     "cross-env": "10.1.0",
-    "mkdirp": "3.0.1",
-    "rimraf": "6.1.3",
     "vitest": "4.1.4"
   }
 }
