@@ -69,6 +69,19 @@ describe('interactiveUpdate', () => {
     expect(installPackagesMock).not.toHaveBeenCalled()
   })
 
+  it('warns about installed deprecated types', async () => {
+    createPackageSummaryMock.mockResolvedValue([
+      { typesName: '@types/foo', latest: '1.0.0', deprecated: 'This package is deprecated' },
+    ])
+    createChoicesMock.mockReturnValue([])
+    const spyLog = vi.spyOn(console, 'log').mockImplementation(() => {})
+
+    await interactiveUpdate({ cwd: '/tmp/project', update: true })
+
+    expect(spyLog.mock.calls.some(([msg]) => /deprecated/.test(msg) && /@types\/foo/.test(msg))).toBe(true)
+    spyLog.mockRestore()
+  })
+
   it('logs error when installPackages fails', async () => {
     const error = new Error('install failed')
     installPackagesMock.mockRejectedValue(error)
