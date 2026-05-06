@@ -48,9 +48,6 @@ importers:
       '@types/node':
         specifier: 24.12.2
         version: 24.12.2
-      '@types/preferred-pm':
-        specifier: 3.0.0
-        version: 3.0.0
       '@types/semver':
         specifier: 7.7.1
         version: 7.7.1
@@ -402,10 +399,6 @@ packages:
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
-
-  '@types/preferred-pm@3.0.0':
-    resolution: {integrity: sha512-Ub1de7EkdavsyM1KNrTb1K1QL+ISepEELELh2QWccyDcVEcyUDiGoYzzOJfonpGNwpymYXY13oRFpXQluGOC5w==}
-    deprecated: This is a stub types definition. preferred-pm provides its own type definitions, so you do not need this installed.
 
   '@types/semver@7.7.1':
     resolution: {integrity: sha512-FmgJfu+MOcQ370SD0ev7EI8TlCAfKYU+B4m5T3yXc1CiRN94g/SZPtsCkk506aUDtlMnFZvasDwHHUcZUEaYuA==}
@@ -1466,10 +1459,6 @@ snapshots:
       undici-types: 7.16.0
 
   '@types/normalize-package-data@2.4.4': {}
-
-  '@types/preferred-pm@3.0.0':
-    dependencies:
-      preferred-pm: 4.1.1
 
   '@types/semver@7.7.1': {}
 
