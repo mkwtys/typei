@@ -92,4 +92,20 @@ describe('interactiveUpdate', () => {
     expect(spyError).toHaveBeenCalledWith(error)
     spyError.mockRestore()
   })
+
+  it('returns silently when user presses Ctrl+C during prompt', async () => {
+    const error = new Error('User force closed the prompt with SIGINT')
+    error.name = 'ExitPromptError'
+    promptMock.mockRejectedValue(error)
+
+    await expect(interactiveUpdate({ cwd: '/tmp/project' })).resolves.toBeUndefined()
+    expect(installPackagesMock).not.toHaveBeenCalled()
+  })
+
+  it('rethrows non-ExitPromptError errors from prompt', async () => {
+    const error = new Error('unexpected error')
+    promptMock.mockRejectedValue(error)
+
+    await expect(interactiveUpdate({ cwd: '/tmp/project' })).rejects.toThrow('unexpected error')
+  })
 })
